@@ -20,20 +20,22 @@ for item in last_10:
     print('publishing {}'.format(data))
     producer.send('story',value=data)
     print('\n')
-    # sleep(3)
 
 while(True):
-
     story=hn.new_stories(limit=1)
     if(len(story)==0 or story[0].item_id<=latest_id):
         continue
     else:
-        curr_story=story[0]
-        text=curr_story.title
-        id=curr_story.item_id
-        data={id:text}
-        latest_id=id
-        print('publishing {}'.format(data))
-        producer.send('story',value=data)
-        print('\n')
-    # sleep(5)
+        start=latest_id+1
+        for i in range(start,story[0].item_id+1):
+            curr_story=hn.get_item(i)
+            if(curr_story.item_type!='story'):
+                continue
+            text=curr_story.title
+            id=curr_story.item_id
+            data={id:text}
+            latest_id=id
+            print('publishing {}'.format(data))
+            producer.send('story',value=data)
+            print('\n')
+    sleep(5)
