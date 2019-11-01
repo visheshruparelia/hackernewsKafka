@@ -1,6 +1,7 @@
 from kafka import KafkaConsumer
 # from pymongo import MongoClient
 from json import loads
+import pandas as pd
 
 consumer = KafkaConsumer(
     'story',
@@ -13,3 +14,4 @@ consumer = KafkaConsumer(
 for message in consumer:
     message = message.value
     print('{} added.'.format(message))
+    (pd.DataFrame.from_dict(data=message, orient='index').to_csv('consumerdata.csv', mode='a', header=False))
