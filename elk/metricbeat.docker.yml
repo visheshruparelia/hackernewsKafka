@@ -11,19 +11,19 @@ metricbeat.autodiscover:
 # setup.kibana.host: "kibana:5601"
 # setup.dashboards.enabled: true
 metricbeat.modules:
-- module: docker
-  metricsets:
-    - "container"
-    - "cpu"
-    - "diskio"
-    - "healthcheck"
-    - "info"
-    #- "image"
-    - "memory"
-    - "network"
-  hosts: ["unix:///var/run/docker.sock"]
-  period: 10s
-  enabled: true
+# - module: docker
+#   metricsets:
+#     - "container"
+#     - "cpu"
+#     - "diskio"
+#     - "healthcheck"
+#     - "info"
+#     #- "image"
+#     - "memory"
+#     - "network"
+#   hosts: ["unix:///var/run/docker.sock"]
+#   period: 10s
+#   enabled: true
 - module: kafka
   metricsets: ["consumergroup","partition"]
   period: 10s
