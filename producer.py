@@ -12,12 +12,12 @@ last_10=hn.new_stories(limit=10)
 # print(last_10)
 print("Will publish last 10 stories initially, then will incrementally publish new story as it is posted on site.")
 for item in last_10:
-    text=item.title
+    title=item.title
     id=item.item_id
     by=item.by
     if(id>latest_id):
         latest_id=id
-    data={'id':id,'text':text,'by':by}
+    data={'id':id,'title':title,'by':by}
     print('publishing {}'.format(data))
     producer.send('story',value=data)
     print('\n')
@@ -32,10 +32,10 @@ while(True):
             curr_story=hn.get_item(i)
             if(curr_story.item_type!='story'):
                 continue
-            text=curr_story.title
+            title=curr_story.title
             id=curr_story.item_id
             by=curr_story.by
-            data={'id':id,'text':text,'by':by}
+            data={'id':id,'title':title,'by':by}
             latest_id=id
             print('publishing {}'.format(data))
             producer.send('story',value=data)
