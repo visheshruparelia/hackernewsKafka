@@ -14,9 +14,10 @@ print("Will publish last 10 stories initially, then will incrementally publish n
 for item in last_10:
     text=item.title
     id=item.item_id
+    by=item.by
     if(id>latest_id):
         latest_id=id
-    data={id:text}
+    data={'id':id,'text':text,'by':by}
     print('publishing {}'.format(data))
     producer.send('story',value=data)
     print('\n')
@@ -33,7 +34,8 @@ while(True):
                 continue
             text=curr_story.title
             id=curr_story.item_id
-            data={id:text}
+            by=curr_story.by
+            data={'id':id,'text':text,'by':by}
             latest_id=id
             print('publishing {}'.format(data))
             producer.send('story',value=data)
