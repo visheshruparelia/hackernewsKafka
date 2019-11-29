@@ -1,40 +1,46 @@
+<html>
+<link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='css/bootstrap.min.css') }}">
 <meta http-equiv="pragma" content="no-cache" />
-    <style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
+<head>
+</head>
 
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-    </style>
-    </head>
     <body>
 
-    <h2>Stories</h2>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">HackerNews Stories</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
 
-    <table>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Refresh</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+<div>
+  <table class="table table-hover table-striped" align="center">
+    <thead class="thead-dark">
       <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Time</th>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">By</th>
+        <th scope="col">Time</th>
       </tr>
+    </thead>
+    <tbody>
       {% for item in list %}
   <tr>
-        <th>{{ item[0] }}</th>
-          <th>{{ item[1] }}</th>
-            <th>{{ item[2] }}</th>
-              <th>{{ item[3] }}</th>
+        <td>{{ item[0] }}</td>
+          <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+              <td>{{ item[3] }}</td>
             </tr>
       {% endfor %}
 
-    </table>
+    </tbody>
+  </table>
+</div>

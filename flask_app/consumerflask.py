@@ -9,23 +9,22 @@ import atexit
 
 POOL_TIME = 5 #Seconds
 
-# variables that are accessible from anywhere
 list = []
 # lock to control access to variable
 dataLock = threading.Lock()
 # thread handler
-yourThread = threading.Thread()
+consumerThread = threading.Thread()
 
 def create_app():
     app = Flask(__name__,template_folder='templates')
 
     def interrupt():
-        global yourThread
-        yourThread.cancel()
+        global consumerThread
+        consumerThread.cancel()
 
-    def doStuff():
+    def consume():
         global commonDataStruct
-        global yourThread
+        global consumerThread
         with dataLock:
             consumer = KafkaConsumer(
                 'story',
@@ -39,18 +38,17 @@ def create_app():
                 print ('{} added.'.format(message))
                 list.append((message.get("id"),message.get("title"),message.get("by"),message.get("time")))
             consumer.close()
-        yourThread = threading.Timer(POOL_TIME, doStuff, ())
-        yourThread.start()
+        consumerThread = threading.Timer(POOL_TIME, consume, ())
+        consumerThread.start()
 
-    def doStuffStart():
-        # Do initialisation stuff here
-        global yourThread
-        # Create your thread
-        yourThread = threading.Timer(POOL_TIME, doStuff, ())
-        yourThread.start()
+    def consumeStart():
+        global consumerThread
+        # Create thread
+        consumerThread = threading.Timer(POOL_TIME, consume, ())
+        consumerThread.start()
 
     # Initiate
-    doStuffStart()
+    consumeStart()
     # When you kill Flask (SIGTERM), clear the trigger for the next thread
     atexit.register(interrupt)
     return app
@@ -58,30 +56,10 @@ def create_app():
 app = create_app()
 
 
-# app = Flask(__name__, template_folder='templates')
-
 @app.route("/")
 def hello():
-
-    # list=[]
-    # i=0
-    #
-    # for message in consumer:
-    #     message = message.value
-    #     i=i+1
-    #     print ('{} added.'.format(message))
-    #     list.append(message)
-    #     if(i==10):
-    #         break
-    # print(i)
-    # with open('./../local_consumer/consumerdata.csv','rt')as f:
-    #     data = csv.reader(f)
-    #     for row in data:
-    #         list.append(row)
-    #
     global list
     return render_template('index.html', list=list)
-
 
 
 if __name__ == "__main__":
