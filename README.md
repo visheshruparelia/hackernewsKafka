@@ -39,7 +39,7 @@
 
 
 **3. Local Consumer:**
-  - `cd local\_consumer`
+  - `cd local_consumer`
   - Run `python3 consumer.py`
 
 
@@ -47,15 +47,15 @@
 
 
 **4. Remote Consumer:**
-  - `cd flask\_app`
+  - `cd flask_app`
   - Run `python3 consumerflask.py`
 
 
 **Outcome:** Webpage will be hosted on [http://localhost:5000](http://localhost:5000/)
 
 **5.  Elastic Search Consumer:**
-  - `cd elastic\_consmer`
-  - Run `python3 consumer.py~
+  - `cd elastic_consmer`
+  - Run `python3 consumer.py`
 
 
 **Outcome:** Data will be indexed to ElasticSearch under index &quot;hn\_story&quot; and can be viewed from Kibana console at [http://localhost:5601](http://localhost:5601/)
