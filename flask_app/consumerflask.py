@@ -32,12 +32,12 @@ def create_app():
                  bootstrap_servers=['localhost:9092'],
                  auto_offset_reset='earliest',
                  enable_auto_commit=True,
-                 group_id='HNgroup',
+                 group_id='FlaskConsumer',
                  value_deserializer=lambda x: loads(x.decode('utf-8')))
             for message in consumer:
                 message = message.value
                 print ('{} added.'.format(message))
-                list.append(message)
+                list.append((message.get("id"),message.get("title"),message.get("by"),message.get("time")))
             consumer.close()
         yourThread = threading.Timer(POOL_TIME, doStuff, ())
         yourThread.start()
