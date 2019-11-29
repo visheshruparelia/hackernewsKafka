@@ -1,14 +1,19 @@
 
 
-**Language** : Python
-**Library Dependencies** : haxor, kafka-python, flask, elasticsearch
+### **Language**
+  Python
+### **Library Dependencies**
+  - haxor
+  - kafka-python
+  - flask
+  - elasticsearch
 
 ## **Installing dependencies:**
 
  1. cd into the root directory of the project.
  2. Run &quot;pip3 install -r requirements.txt&quot;
  3.  **Install Docker:** [Docker docs](https://docs.docker.com/v17.12/install/linux/docker-ce/ubuntu/#install-using-the-repository)
- 4.  **Install Docker Compose:** [Docker-Compose docs](*https://docs.docker.com/compose/install/)
+ 4.  **Install Docker Compose:** [Docker-Compose docs](https://docs.docker.com/compose/install/)
 
 
 ## **Steps to run:**
