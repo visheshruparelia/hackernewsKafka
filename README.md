@@ -58,5 +58,6 @@
   - Run `python3 consumer.py`
 
 
-**Outcome:** Data will be indexed to ElasticSearch under index &quot;hn\_story&quot; and can be viewed from Kibana console at [http://localhost:5601](http://localhost:5601/)
+**Outcome:** Data will be indexed to ElasticSearch under index `hn_story` and can be viewed from Kibana console at [http://localhost:5601](http://localhost:5601/)
 
+**NOTE: When opening kibana for the first time, an index named “hn_story” needs to be created.**
