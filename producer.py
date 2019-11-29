@@ -15,9 +15,12 @@ for item in last_10:
     title=item.title
     id=item.item_id
     by=item.by
+    time=item.submission_time
+    a=time.strftime("%m/%d/%Y, %H:%M:%S")
+
     if(id>latest_id):
         latest_id=id
-    data={'id':id,'title':title,'by':by}
+    data={'id':id,'title':title,'by':by,'time':a}
     print('publishing {}'.format(data))
     producer.send('story',value=data)
     print('\n')
@@ -35,7 +38,9 @@ while(True):
             title=curr_story.title
             id=curr_story.item_id
             by=curr_story.by
-            data={'id':id,'title':title,'by':by}
+            time=item.submission_time
+            a=time.strftime("%m/%d/%Y, %H:%M:%S")
+            data={'id':id,'title':title,'by':by,'time':a}
             latest_id=id
             print('publishing {}'.format(data))
             producer.send('story',value=data)

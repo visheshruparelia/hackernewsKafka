@@ -3,6 +3,7 @@ services:
 
   zookeeper:
     image: wurstmeister/zookeeper
+    container_name: zookeeper
     ports:
       - 2181:2181
     networks:
@@ -10,6 +11,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka:latest
+    container_name: kafka
     depends_on:
       - zookeeper
     ports:

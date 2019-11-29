@@ -14,7 +14,7 @@ consumer = KafkaConsumer(
 
 for message in consumer:
     message = message.value
-    df=pd.DataFrame({'id':[message['id']],'title':[message['title']],'by':[message['by']]})
+    df=pd.DataFrame({'id':[message['id']],'title':[message['title']],'by':[message['by']],'time':[message['time']]})
     with open('consumerdata.csv', 'a') as f:
         df.to_csv(f, header=False,index=False)
     print('{} added.'.format(message))
