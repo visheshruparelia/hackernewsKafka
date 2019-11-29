@@ -14,9 +14,10 @@ Install Docker-compose:
 https://docs.docker.com/compose/install/
 
 Steps to run:
+
 Kafka, Zookeeper, ElasticSearch, Kibana:
-2. cd into root directory of the project
-3. Run “sudo docker-compose up --no-recreate”
+1. cd into root directory of the project
+2. Run “sudo docker-compose up --no-recreate”
 
 Producer: 
 1. cd into the root directory of the project
